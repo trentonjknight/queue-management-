@@ -16,3 +16,14 @@ class Queue:
         pass
     def size(self):
         return len(self._queue) 
+
+# class List:
+#     def __init__(self):
+#         self.x = []
+#         pass
+#     def add(self, param1):
+#         pass
+#     def delete(self):
+#         pass
+#     def print(self):
+#         pass

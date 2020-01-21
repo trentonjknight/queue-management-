@@ -31,7 +31,7 @@ def print_queue():
         
 def start():
     
-    print("\nHello, this is the Command Line Interface for a Queue Managment application.");
+    print("\nHello, this is the Command Line Interface for a Queue Management application.")
     while True:
         
         option = show_main_menu()

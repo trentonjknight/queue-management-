@@ -23,12 +23,45 @@ What would you like to do (type a number and press Enter)?
     ''')
     response = input()
     return response
-    
+
+#1
+def enqueue():
+    print('\nWho would you like to add to the queue?')
+    person = input()
+    queue.enqueue( person )
+    next_in_line = queue.size() - 1 if queue._mode == 'FIFO' else 0
+    amt = 'is one person' if next_in_line == 1 else f'are {next_in_line} people'
+    print(f'{person} added to queue. There are {amt} before them.')
+
+#2
+def dequeue():
+    person = queue.dequeue()
+    print(f'{person} has been removed from the queue.')
+
+#3
 def print_queue():
     # you must print on the console the entire queue list
     print("Printing the entire list...")
     print(queue.get_queue())
-        
+
+#4
+def export_queue():
+    print('Exporting queue to JSON file...')
+    jsonfile = open('queue.json' , 'w')
+    json.dump(queue.get_queue() , jsonfile)
+    jsonfile.close()
+    print('JSON file has been created successfully')
+
+#5
+def import_queue():
+    print('Importing queue from JSON file')
+    jsonfile = open('queue.json' , 'r')
+    global queue
+    queue = Queue (mode='FIFO', current_queue = json.load(jsonfile))
+    jsonfile.close()
+    print_queue()
+
+
 def start():
     
     print("\nHello, this is the Command Line Interface for a Queue Management application.")
@@ -42,8 +75,16 @@ def start():
             print("Invalid option "+str(option))
 
         # add your options here using conditionals (if)
-        if option == 3:
+        if option == 1:
+            enqueue()
+        elif option == 2:
+            dequeue()
+        elif option == 3:
             print_queue()
+        elif option == 4:
+            export_queue()
+        elif option == 5:
+            import_queue()
         elif option == 6:
             print("Bye bye!")
             return None
